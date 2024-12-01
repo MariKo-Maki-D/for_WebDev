@@ -7,15 +7,25 @@
     <link rel="stylesheet" href="order.css">
 </head>
 <body>
-    <div class="cart" >
+    <nav class="navbar">
+        <a href="index.html" class="header">Brownies <span style="color: rgb(224, 186, 143);">Cafe</span></a>
+        <button id="toggleCart" class="cart-icon">
+            <img src="media/cart.jpg" alt="Cart">
+        </button>
+    </nav>
+
+    <div class="cart">
         <h2>Cart</h2>
         <div id="cartItems">
         </div>
         <p id="cartTotal"><strong>Total:</strong> 0 items</p>
     </div>
 
+
+
     <div class="content">
         <h1 class="menu-header font">Menu</h1>
+        <div class="menus">
         <div class="menu-item" data-name="Chip Cookies" data-description="Crispy chocolate chip cookies" data-price="4">
             <img src="media/Cookies.png" alt="Cookies">
             <div>
@@ -23,7 +33,7 @@
                 <p>Crispy chocolate chip cookies</p>
                 <p><strong>Price : </strong> 4$ for one</p>
                 <input type="number" class="quantity-input" value="1" min="1">
-                <button class="add-to-cart">Add to cart</button>
+                <button class="add-to-cart">add to cart</button>
             </div>
         </div>
         <div class="menu-item" data-name="Muffins" data-description="Soft muffins with filling" data-price="5">
@@ -33,20 +43,43 @@
                 <p>Soft muffins with filling</p>
                 <p><strong>Price : </strong> 5$ for one</p>
                 <input type="number" class="quantity-input" value="1" min="1">
-                <button class="add-to-cart">Add to cart</button>
+                <button class="add-to-cart">add to cart</button>
             </div>
         </div>
-        <div class="menu-item" data-name="Macaroons" data-description="Soft muffins with filling" data-price="5">
-            <img src="media/2.jpg" alt="Macaroons">
+        <div class="menu-item" data-name="Macaroons" data-description="Delicate macaroons with creamy filling" data-price="4">
+            <img src="media/macaroon.jpg" alt="Macaroons">
             <div>
                 <h3>Macaroons</h3>
-                <p>Soft muffins with filling</p>
+                <p>Delicate almond macaroons with creamy filling</p>
                 <p><strong>Price : </strong> 4$ for one</p>
                 <input type="number" class="quantity-input" value="1" min="1">
-                <button class="add-to-cart">Add to cart</button>
+                <button class="add-to-cart">add to cart</button>
+            </div>
+        </div>
+        <div class="menu-item" data-name="Donuts" data-description="Freshly baked donuts with glaze" data-price="5">
+            <img src="media/donut.png" alt="Donuts">
+            <div>
+                <h3>Donuts</h3>
+                <p>Freshly baked donuts with glaze</p>
+                <p><strong>Price:</strong> 5$ for one</p>
+                <input type="number" class="quantity-input" value="1" min="1">
+                <button class="add-to-cart">add to cart</button>
+            </div>
+        </div>
+        <div class="menu-item" data-name="Croissants" data-description="Buttery and flaky croissant" data-price="4">
+            <img src="media/croissant.jpg" alt="Croissants">
+            <div>
+                <h3>Croissants</h3>
+                <p>Buttery and flaky chocolate croissant</p>
+                <p><strong>Price:</strong> 4$ for one</p>
+                <input type="number" class="quantity-input" value="1" min="1">
+                <button class="add-to-cart">add to cart</button>
             </div>
         </div>
     </div>
+    </div>
+
+   
 
     <script>
         const cartItems = document.getElementById('cartItems');
@@ -73,6 +106,22 @@
                 cartTotal.innerHTML = `<strong>Total:</strong> ${totalItems} items`;
             });
         });
+        
+const cart = document.querySelector('.cart');
+const toggleCartButton = document.getElementById('toggleCart');
+
+// Переключение состояния корзины
+toggleCartButton.addEventListener('click', () => {
+    cart.classList.toggle('open');
+});
+
+// Закрытие корзины при клике вне её области
+document.addEventListener('click', (event) => {
+    if (!cart.contains(event.target) && !toggleCartButton.contains(event.target)) {
+        cart.classList.remove('open');
+    }
+});
+
     </script>
 </body>
 </html>
