@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="order.css">
+</head>
+<body>
+    <div class="cart" >
+        <h2>Cart</h2>
+        <div id="cartItems">
+        </div>
+        <p id="cartTotal"><strong>Total:</strong> 0 items</p>
+    </div>
+
+    <div class="content">
+        <h1 class="menu-header font">Menu</h1>
+        <div class="menu-item" data-name="Chip Cookies" data-description="Crispy chocolate chip cookies" data-price="4">
+            <img src="media/Cookies.png" alt="Cookies">
+            <div>
+                <h3>Cookies</h3>
+                <p>Crispy chocolate chip cookies</p>
+                <p><strong>Price : </strong> 4$ for one</p>
+                <input type="number" class="quantity-input" value="1" min="1">
+                <button class="add-to-cart">Add to cart</button>
+            </div>
+        </div>
+        <div class="menu-item" data-name="Muffins" data-description="Soft muffins with filling" data-price="5">
+            <img src="media/muffin.jpg" alt="Muffins">
+            <div>
+                <h3>Muffins</h3>
+                <p>Soft muffins with filling</p>
+                <p><strong>Price : </strong> 5$ for one</p>
+                <input type="number" class="quantity-input" value="1" min="1">
+                <button class="add-to-cart">Add to cart</button>
+            </div>
+        </div>
+        <div class="menu-item" data-name="Macaroons" data-description="Soft muffins with filling" data-price="5">
+            <img src="media/2.jpg" alt="Macaroons">
+            <div>
+                <h3>Macaroons</h3>
+                <p>Soft muffins with filling</p>
+                <p><strong>Price : </strong> 4$ for one</p>
+                <input type="number" class="quantity-input" value="1" min="1">
+                <button class="add-to-cart">Add to cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        let totalItems = 0;
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const menuItem = button.closest('.menu-item');
+                const name = menuItem.dataset.name;
+                const description = menuItem.dataset.description;
+                const price = parseInt(menuItem.dataset.price, 10);
+                const quantity = parseInt(menuItem.querySelector('.quantity-input').value, 10);
+
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <p><strong>${name}</strong></p>
+                    <p><strong>Number:</strong> ${quantity}</p>
+                    <p><strong>Price:</strong> ${price * quantity}$</p> `;
+
+                cartItems.appendChild(cartItem);
+                totalItems += quantity;
+                cartTotal.innerHTML = `<strong>Total:</strong> ${totalItems} items`;
+            });
+        });
+    </script>
+</body>
+</html>
